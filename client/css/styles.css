@@ -1,0 +1,155 @@
+        /* Estilos para las ventanas de menú y formularios de grupo */
+        #mainMenu,
+        #joinGroupForm,
+        #createGroupForm {
+            background: #23232a;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            width: 350px;
+            max-width: 95vw;
+            margin: 0 auto;
+            padding: 32px 24px 24px 24px;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+
+        #mainMenu h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+
+        #joinGroupForm h2,
+        #createGroupForm h2 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        #mainMenu button,
+        #joinGroupForm button,
+        #createGroupForm button {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 8px;
+            margin-top: 4px;
+            transition: background 0.2s;
+        }
+
+        #mainMenu button:hover,
+        #joinGroupForm button:hover,
+        #createGroupForm button:hover {
+            background: #2563eb;
+        }
+
+        #joinGroupForm input,
+        #createGroupForm input {
+            width: 90%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #2d2d37;
+            background: #18181b;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            outline: none;
+        }
+
+        #joinGroupError,
+        #createGroupError {
+            color: #f87171;
+            font-size: 0.95em;
+            margin-top: 6px;
+            min-height: 20px;
+            text-align: center;
+        }
+        body {
+            background: #18181b;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            background: #23232a;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            width: 350px;
+            max-width: 95vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 500px; /* Altura fija remela */
+        }
+        .chat-header {
+            background: #2d2d37;
+            color: #fff;
+            padding: 16px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            background: #23232a;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 0; /* Para que flex funcione bien */
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            line-height: 1.4;
+            color: #fff;
+            background: #3b82f6;
+            align-self: flex-end;
+            box-shadow: 0 2px 8px rgba(59,130,246,0.08);
+        }
+        .message.other {
+            background: #52525b;
+            align-self: flex-start;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #2d2d37;
+            background: #23232a;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+        .chat-input button {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 0 0 0 0;
+            transition: background 0.2s;
+        }
+        .chat-input button:hover {
+            background: #2563eb;
+        }

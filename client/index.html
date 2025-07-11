@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Real</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="mainMenu" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+    <h1>WASO</h1>
+    <button id="btnJoinGroup">Ingresar a grupo</button>
+    <button id="btnCreateGroup">Crear grupo</button>
+</div>
+
+<div id="joinGroupForm" style="display:none; flex-direction: column; gap: 10px; align-items: center;">
+    <h2>Ingresar a grupo</h2>
+    <input id="joinGroupId" placeholder="ID del grupo" />
+    <input id="joinGroupPassword" placeholder="Contraseña" type="password" />
+    <button id="btnJoinGroupSend">Ingresar</button>
+    <button id="btnBackJoin">Volver</button>
+    <div id="joinGroupError" style="color:red;"></div>
+</div>
+
+<div id="createGroupForm" style="display:none; flex-direction: column; gap: 10px; align-items: center;">
+    <h2>Crear grupo</h2>
+    <input id="createGroupId" placeholder="ID del grupo" />
+    <input id="createGroupName" placeholder="Nombre del grupo" />
+    <input id="createGroupPassword" placeholder="Contraseña" type="password" />
+    <button id="btnCreateGroupSend">Crear</button>
+    <button id="btnBackCreate">Volver</button>
+    <div id="createGroupError" style="color:red;"></div>
+</div>
+
+<div class="chat-container" id="chatContainer" style="display:none;">
+    <div class="chat-header">💬 Chat Real</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <form class="chat-input" id="chatForm" autocomplete="off">
+        <input type="text" id="chatInput" placeholder="Escribe un mensaje..." required />
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+<script src=js/main.js type="module"></script>
+</body>
+</html>
