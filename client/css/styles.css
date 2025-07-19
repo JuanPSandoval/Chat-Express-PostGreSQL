@@ -1,3 +1,72 @@
+        #error-text, .error-text {
+        color: #f87171;
+        font-size: 0.9em;
+        text-align: center;
+        min-height: 20px;
+        }
+
+        #authContainer {
+        background: #23232a;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+        width: 350px;
+        max-width: 95vw;
+        margin: 40px auto 0;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        }
+
+        #loginForm, #registerForm {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        }
+
+        #loginForm input, #registerForm input {
+        width: 90%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #2d2d37;
+        background: #18181b;
+        color: #fff;
+        font-size: 1rem;
+        margin-bottom: 4px;
+        outline: none;
+        }
+
+        #loginForm button, #registerForm button {
+        width: 90%;
+        padding: 10px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 6px;
+        transition: background 0.2s;
+        }
+
+        #loginForm button:hover, #registerForm button:hover {
+        background: #2563eb;
+        }
+
+        .switch {
+        color: #ccc;
+        font-size: 0.9em;
+        margin-top: -4px;
+        }
+        .switch span {
+        color: #3b82f6;
+        cursor: pointer;
+        text-decoration: underline;
+        }
+        
         /* Estilos para las ventanas de menú y formularios de grupo */
         #mainMenu,
         #joinGroupForm,

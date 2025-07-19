@@ -14,6 +14,10 @@ const chatForm = document.getElementById('chatForm');
 const chatInput = document.getElementById('chatInput');
 const chatMessages = document.getElementById('chatMessages');
 
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+const authContainer = document.getElementById('authContainer');
+
 let socket;
 let currentGroupId = null;
 let username = null;
@@ -38,8 +42,96 @@ btnBackCreate.onclick = () => {
     document.getElementById('createGroupError').textContent = '';
 };
 
+// Alternar login/registro
+document.getElementById('showRegister').onclick = () => {
+  loginForm.style.display = 'none';
+  registerForm.style.display = 'flex';
+};
+document.getElementById('showLogin').onclick = () => {
+  registerForm.style.display = 'none';
+  loginForm.style.display = 'flex';
+};
+
+// Obtener username desde cookie via API
 const getusername = async () => {
-    return "user12345"
+  try {
+    const res = await fetch('/api/users/me', {
+      credentials: 'include',
+      cache: 'no-store' // Evitar caché
+    });
+
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    return data.username;
+  } catch (err) {
+    console.error('Error obteniendo username:', err);
+  }
+};
+
+// Login
+document.getElementById('btnLogin').onclick = async () => {
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+  const errorDiv = document.getElementById('loginError');
+  errorDiv.textContent = '';
+
+  if (!username || !password) {
+    errorDiv.textContent = 'Completa todos los campos';
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/users/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username, password })
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      errorDiv.textContent = data.error || 'Error en login';
+      return;
+    }
+
+    authContainer.style.display = 'none';
+    document.getElementById('mainMenu').style.display = 'flex';
+    await ensureSocket();
+  } catch {
+    errorDiv.textContent = 'Error de red';
+  }
+};
+
+// Registro
+document.getElementById('btnRegister').onclick = async () => {
+  const username = document.getElementById('registerUsername').value.trim();
+  const password = document.getElementById('registerPassword').value.trim();
+  const errorDiv = document.getElementById('registerError');
+  errorDiv.textContent = '';
+
+  if (!username || !password) {
+    errorDiv.textContent = 'Completa todos los campos';
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/users/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      errorDiv.textContent = data.error || 'Error en registro';
+      return;
+    }
+
+    registerForm.style.display = 'none';
+    loginForm.style.display = 'flex';
+  } catch {
+    errorDiv.textContent = 'Error de red';
+  }
 };
 
 // Inicializar socket y listeners de chat
@@ -155,3 +247,15 @@ function setupChatListeners() {
         socket.auth.serverOffset = serverOffset;
     });
     }
+    
+    window.addEventListener('DOMContentLoaded', async () => {
+    const username = await getusername();
+    if (username !== 'anonymous') {
+        document.getElementById('authContainer').style.display = 'none';
+        document.getElementById('mainMenu').style.display = 'flex';
+        await ensureSocket();
+    } else {
+        document.getElementById('authContainer').style.display = 'flex';
+        document.getElementById('mainMenu').style.display = 'none';
+    }
+    });

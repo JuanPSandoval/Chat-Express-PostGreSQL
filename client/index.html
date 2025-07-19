@@ -8,7 +8,26 @@
     <link rel="icon" type="website-icon" href="./assets/favicon.ico">
 </head>
 <body>
-    <div id="mainMenu" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+<div id="authContainer">
+  <div id="loginForm">
+    <h2>Iniciar sesión</h2>
+    <input type="text" id="loginUsername" placeholder="Usuario" />
+    <input type="password" id="loginPassword" placeholder="Contraseña" />
+    <button id="btnLogin">Entrar</button>
+    <p class="switch">¿No tienes cuenta? <span id="showRegister">Regístrate</span></p>
+    <div id="loginError" class="error-text"></div>
+  </div>
+
+  <div id="registerForm" style="display: none;">
+    <h2>Registro</h2>
+    <input type="text" id="registerUsername" placeholder="Usuario" />
+    <input type="password" id="registerPassword" placeholder="Contraseña" />
+    <button id="btnRegister">Registrarse</button>
+    <p class="switch">¿Ya tienes cuenta? <span id="showLogin">Inicia sesión</span></p>
+    <div id="registerError" class="error-text"></div>
+  </div>
+</div>
+    <div id="mainMenu" style="display: flex; flex-direction: column; align-items: center; gap: 20px; display: none;">
     <h1>WASO</h1>
     <button id="btnJoinGroup">Ingresar a grupo</button>
     <button id="btnCreateGroup">Crear grupo</button>
