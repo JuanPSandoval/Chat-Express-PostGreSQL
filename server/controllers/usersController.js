@@ -27,7 +27,7 @@ export async function getCurrentUser(req, res) {
   const username = req.cookies?.username;
   console.log("Cookies recibidas:", req.cookies); 
   if (!username) {
-    return res.status(200).json({ username: 'anonymous' });
+    return res.status(401).json({ error: 'No autorizado' });
   }
   res.json({ username });
 }

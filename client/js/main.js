@@ -60,11 +60,11 @@ const getusername = async () => {
       cache: 'no-store' // Evitar caché
     });
 
-    if (!res.ok) throw new Error();
+    if (res.status === 401) throw new Error('No autorizado');
     const data = await res.json();
     return data.username;
   } catch (err) {
-    console.error('Error obteniendo username:', err);
+    return null;
   }
 };
 
@@ -248,14 +248,16 @@ function setupChatListeners() {
     });
     }
     
-    window.addEventListener('DOMContentLoaded', async () => {
-    const username = await getusername();
-    if (username !== 'anonymous') {
-        document.getElementById('authContainer').style.display = 'none';
-        document.getElementById('mainMenu').style.display = 'flex';
-        await ensureSocket();
-    } else {
-        document.getElementById('authContainer').style.display = 'flex';
-        document.getElementById('mainMenu').style.display = 'none';
-    }
-    });
+window.addEventListener('DOMContentLoaded', async () => {
+  const user = await getusername();
+  if (user) {
+    authContainer.style.display = 'none';
+    mainMenu.style.display = 'flex';
+    username = user;
+    await ensureSocket();
+  } else {
+    authContainer.style.display = 'flex';
+    mainMenu.style.display = 'none';
+  }
+});
+
