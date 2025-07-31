@@ -57,7 +57,7 @@ const getusername = async () => {
   try {
     const res = await fetch('/api/users/me', {
       credentials: 'include',
-      cache: 'no-store' // Evitar caché
+      cache: 'no-store' 
     });
 
     if (res.status === 401) throw new Error('No autorizado');

@@ -1,6 +1,7 @@
 // controllers/usersController.js
 import bcrypt from 'bcryptjs';
 import { createUser, findUserByUsername } from '../models/userModel.js';
+import { generarToken } from '../utils/jwt.js';
 
 export async function registerUser(req, res) {
   const { username, password } = req.body;
@@ -17,9 +18,24 @@ export async function loginUser(req, res) {
   const { username, password } = req.body;
   const user = await findUserByUsername(username);
   if (!user) return res.status(401).json({ error: 'Usuario no encontrado' });
+
   const valid = await bcrypt.compare(password, user.password);
   if (!valid) return res.status(401).json({ error: 'Contraseña incorrecta' });
-  res.cookie('username', username, { httpOnly: true });
+
+  const token = generarToken({ username });
+
+  res.cookie('username', username, {
+    httpOnly: true,
+    sameSite: 'strict',
+    secure: false 
+  });
+
+  res.cookie('token', token, {
+    httpOnly: true,
+    sameSite: 'strict',
+    secure: false
+  });
+  
   res.json({ message: 'Login exitoso' });
 }
 
