@@ -83,7 +83,8 @@ Built with rage and love by https://github.com/JuanPSandoval
 
 ## ⚠️ Disclaimer
 
-This project includes a very simple frontend, making it easy to test or integrate with your own custom application.
+This project includes a very simple frontend, making it easy to test or integrate with your own custom application. Don't forget to create the .env file in the main folder and add the environment variables:
+DB_TOKEN,DB_LINK,JW_TOKEN_SECRET
 
 ---
 
